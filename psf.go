@@ -82,18 +82,22 @@ func createGoFile(file string)  {
 
 	templateFile := `package main
 
-import "encoding/base64"
+import (
+	"encoding/base64"
+	"strings"
+)
 
 var psfResValues = map[string]string{
 #data#
 }
 
-func PsfRes(name string) string {
+func PsfRes(name string) []byte {
+	name = strings.Replace(name, "\\", "/", -1)
 	const BASE_64_TABLE = "<,./?~!@#$CDVWX%^&*ABYZabcghijkpqrstuvwxyz01EFKLMNOPQRSTU2345678"
 	str := psfResValues[name]
 	coder := base64.NewEncoding(BASE_64_TABLE)
 	by, _:= coder.DecodeString(str)
-	return string(by)
+	return by
 }`
 
 	var contents = ""
