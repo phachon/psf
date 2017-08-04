@@ -82,6 +82,8 @@ func createGoFile(file string)  {
 
 	templateFile := `package main
 
+import "encoding/base64"
+
 var psfResValues = map[string]string{
 #data#
 }
