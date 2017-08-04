@@ -86,7 +86,7 @@ var psfResValues = map[string]string{
 #data#
 }
 
-func getFileByName(name string) string {
+func PsfRes(name string) string {
 	const BASE_64_TABLE = "<,./?~!@#$CDVWX%^&*ABYZabcghijkpqrstuvwxyz01EFKLMNOPQRSTU2345678"
 	str := psfResValues[name]
 	coder := base64.NewEncoding(BASE_64_TABLE)
