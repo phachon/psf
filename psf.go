@@ -91,13 +91,29 @@ var psfResValues = map[string]string{
 #data#
 }
 
+var psfBytesValues = map[string][]byte{}
+
 func PsfRes(name string) []byte {
 	name = strings.Replace(name, "\\", "/", -1)
+	psfByte := psfBytesValues[name]
+	return psfByte
+}
+
+// base64 string to binary byte
+func base64ToBytes(base64Str string) []byte {
 	const BASE_64_TABLE = "<,./?~!@#$CDVWX%^&*ABYZabcghijkpqrstuvwxyz01EFKLMNOPQRSTU2345678"
-	str := psfResValues[name]
 	coder := base64.NewEncoding(BASE_64_TABLE)
-	by, _:= coder.DecodeString(str)
-	return by
+	binaryByte, _:= coder.DecodeString(base64Str)
+	return binaryByte
+}
+
+// init psfBase64 to psfBytes
+func init()  {
+	if(len(psfResValues) > 0) {
+		for psfKey, psfValue := range psfResValues {
+			psfBytesValues[psfKey] = base64ToBytes(psfValue)
+		}
+	}
 }`
 
 	var contents = ""
