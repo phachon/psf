@@ -17,7 +17,7 @@ var fileInfoMapping = map[string]string{}
 func main()  {
 
 	filePath := flag.String("path", "", "static file path, more than one , separated. ")
-	psfResFile := flag.String("name", "psf_resouce", "save go file name")
+	psfResFile := flag.String("name", "psf_resource", "save go file name")
 	flag.Parse()
 
 	filePathValues := strings.Split(*filePath, ",");
